@@ -98,6 +98,7 @@ def creer_rectangle(x0, y0, x1, y1):
     """création du rectangle"""
     global ballon
     canvas.create_rectangle((x0, y0), (x1, y1), outline = "white")
+    cote = x1-x1
     ballon = creer_balle()
     return [ballon, x0, y0, x1, y1]
 
