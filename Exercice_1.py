@@ -71,7 +71,8 @@ def start():
 def creer_balle():
     """création de la balle"""
     global cercle
-    x, y = 300, 200
+    x, y = x0, y0
+    petit_cote = 
     r = 2
     cercle = canvas.create_oval((x-r, y-r), (x+r, y+r), fill="blue")
     dx = rd.randint(1, 7)
@@ -96,15 +97,7 @@ def rebond1(b):
 
 def creer_rectangle(x0, y0, x1, y1):
     """création du rectangle"""
-    global ballon
-    canvas.create_rectangle((x0, y0), (x1, y1), outline = "white")
-    cote = x1-x1
-    ballon = creer_balle()
-    return [ballon, x0, y0, x1, y1]
-
-def quadrillage(n, m):
-    """création du quadrillage"""
-    creer_rectangle
+    canvas.create_rectangle((x0, y0), (x1, y1), outline= "white")
 
 # programme principal
 
@@ -113,9 +106,8 @@ canvas = tk.Canvas(racine, bg="black", width=WIDTH, height=HEIGHT)
 canvas.grid()
 bouton = tk.Button(racine, text="Démarrer", command=start)
 bouton.grid(row=1)
+rectangle = creer_rectangle(300, 200, 350, 250)
 balle = creer_balle()
-rectangle = creer_rectangle(200, 200, 350, 300)
-print(rectangle)
 
 
 racine.mainloop()
