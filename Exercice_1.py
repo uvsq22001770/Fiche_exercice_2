@@ -1,4 +1,4 @@
-"""import tkinter as tk
+import tkinter as tk
 import random as rd
 
 demarrer = 1
@@ -48,35 +48,37 @@ bouton.grid(row=1)
 balle = creer_balle()
 
 
-racine.mainloop()"""
+racine.mainloop()
 
-import tkinter as tk
+"""import tkinter as tk
 import random as rd
 
 WIDTH = 600
 HEIGHT = 400
-demarrer = 1
+pause = False
 
-def start():
-    global demarrer
-    if demarrer:
-        mouvement(balle)
+def demarrer():
+    global pause
+    if pause == False:
+        mouvement()
         bouton.config(text="Arrêter")
+        pause = True
     else:
         canvas.after_cancel(id_after)
         bouton.config(text="Démarrer")
-    demarrer = 1 - demarrer
+        pause = False
 
 
-def creer_balle():
-    """création de la balle"""
-    global cercle
-    x, y = x0, y0
-    petit_cote = 
-    r = 2
-    cercle = canvas.create_oval((x-r, y-r), (x+r, y+r), fill="blue")
+def creer_balle(x0, y0, x1, y1, largeur, hauteur):
+
+    x, y = x0 + largeur // 2, y0 + hauteur // 2
     dx = rd.randint(1, 7)
     dy = rd.randint(1, 7)
+    if hauteur > largeur :
+        rayon = largeur // 10
+    else:
+        rayon = hauteurv // 10
+    cercle = canvas.create_oval((x-rayon, y-rayon), (x+rayon, y+rayon), fill="blue")
     return [cercle, dx, dy]
 
 
@@ -87,17 +89,22 @@ def mouvement(b):
     rebond1(b)
 
 
-def rebond1(b):
-    """rebond"""
-    x0, y0, x1, y1 = canvas.coords(b[0])
-    if x0 <= 0 or x1 >= 600:
-        b[1] = -b[1]
-    if y0 <= 0 or y1 >= 400:
-        b[2] = -b[2]
+def rebond1():
+
+    for i in range(0, len(liste)):
+        x0, y0, x1, y1 = canvas.coords(liste[i][0])
+        if x0 <= liste[i][3] or x1 >= liste[i][5]:
+            liste[i][1] = -liste[i][1]
+        if y0 <= liste[i][4] or y1 >= liste[i][6]:
+            liste[i][2] = -liste[i][2]
 
 def creer_rectangle(x0, y0, x1, y1):
-    """création du rectangle"""
+
     canvas.create_rectangle((x0, y0), (x1, y1), outline= "white")
+    creer_balle(x0, y0, x1, y1)
+
+def quadrillage(n, m):
+
 
 # programme principal
 
@@ -106,8 +113,11 @@ canvas = tk.Canvas(racine, bg="black", width=WIDTH, height=HEIGHT)
 canvas.grid()
 bouton = tk.Button(racine, text="Démarrer", command=start)
 bouton.grid(row=1)
-rectangle = creer_rectangle(300, 200, 350, 250)
-balle = creer_balle()
+x0 = 250
+y0 = 150
+x1 = 375
+y1 = 275
+rectangle = creer_rectangle(x0, y0, x1, y1)
+balle = creer_balle(x0, y0, x1, y1)
 
-
-racine.mainloop()
+racine.mainloop()"""
